@@ -1,0 +1,40 @@
+{
+  "name": "basic-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc --outDir build && node build/server.js",
+    "start": "npm install && tsc && node build/server.js",
+    "dev": "tsc -w --outDir build & nodemon -q -w build build/server.js",
+    "lint": "./node_modules/.bin/eslint ./src/**",
+    "pretty": "prettier --write '**/*.{js,json,ts}' '!node_modules/**'",
+    "postpretty": "yarn lint --fix",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "eslint": "^7.26.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "prettier": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.11",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "^14.14.37",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
