@@ -40,11 +40,11 @@ const main = async () => {
   });
   app.use((err, req, res, next) => {
     return res
-      .status(status.INTERNAL_SERVER_ERROR)
+      .status(err.statusCode || status.INTERNAL_SERVER_ERROR)
       .json(
         ResponseFormatter.getErrorResponse(
-          status.INTERNAL_SERVER_ERROR,
-          getReasonPhrase(status.INTERNAL_SERVER_ERROR),
+          err.statusCode || status.INTERNAL_SERVER_ERROR,
+          getReasonPhrase(err.statusCode || status.INTERNAL_SERVER_ERROR),
           err
         )
       );
