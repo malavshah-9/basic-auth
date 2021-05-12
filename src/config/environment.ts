@@ -10,4 +10,5 @@ export default {
   DATABASE_USER: process.env.DATABASE_USER,
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
   DATABASE_PORT: process.env.DATABASE_PORT,
+  JWT_SECRET: process.env.JWT_SECRET,
 };

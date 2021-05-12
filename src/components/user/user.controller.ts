@@ -1,6 +1,7 @@
 import status from 'http-status-codes';
 
 import user from './user.model';
+import JWT from '../../services/JWTGenerator.service';
 import ResponseFormatter from '../../util/ResponseFormatter';
 
 class UserController {
@@ -11,20 +12,30 @@ class UserController {
     password = req.body.password;
     if (email && password) {
       try {
-        let dbResult = user.create({
+        let dbResult = await user.create({
           email,
           password,
         });
+        let token = await JWT.signToken({
+          userId: dbResult.getDataValue('id'),
+        });
         return res.status(status.OK).json(
           ResponseFormatter.getSuccessResponse(true, {
-            ...dbResult,
+            accessToken: token,
           })
         );
       } catch (e) {
-        throw e;
+        let errors = e.errors.map((item) => item.message);
+        next({
+          statusCode: status.UNPROCESSABLE_ENTITY,
+          errors,
+        });
       }
     } else {
-      throw new Error(' Please enter valid body');
+      next({
+        statusCode: status.BAD_REQUEST,
+        message: 'Please enter valid data',
+      });
     }
   }
 }
