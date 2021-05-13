@@ -3,7 +3,7 @@ import ENV from '../config/environment';
 
 class JWTGenerator {
   constructor() {}
-  async signToken(payload) {
+  async signToken(payload, expireTime = '1h') {
     return new Promise((resolve, reject) => {
       jwt.sign(
         payload,
@@ -11,7 +11,7 @@ class JWTGenerator {
         {
           algorithm: 'HS256',
           encoding: 'utf-8',
-          expiresIn: '1h',
+          expiresIn: expireTime,
         },
         (err, token) => {
           if (err) return reject(err);
