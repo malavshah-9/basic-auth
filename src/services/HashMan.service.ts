@@ -1,11 +1,21 @@
-import pbkdf2 from 'pbkdf2';
+import bcrypt from 'bcryptjs';
 
 class HashMan {
   async getHashedKey(dataKey) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        let derivedKey = pbkdf2.pbkdf2Sync(dataKey, 'test123', 1, 15);
+        let derivedKey = await bcrypt.hash(dataKey, await bcrypt.genSalt(10));
         return resolve(derivedKey);
+      } catch (e) {
+        return reject(e);
+      }
+    });
+  }
+  async compare(dataKey: string, actualDataKey: string): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let result = await bcrypt.compare(dataKey, actualDataKey);
+        return resolve(result);
       } catch (e) {
         return reject(e);
       }
