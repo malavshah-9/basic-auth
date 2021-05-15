@@ -20,7 +20,7 @@ User.init(
       },
     },
     password: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(60),
       allowNull: false,
       validate: {
         min: 8,
