@@ -8,6 +8,7 @@ import methodOverride from 'method-override';
 import { createHttpTerminator } from 'http-terminator';
 import bodyParser from 'body-parser';
 import status, { getReasonPhrase } from 'http-status-codes';
+import pino from 'pino-http';
 
 import environment from './config/environment';
 import dbClient from './sequelize/index';
@@ -20,6 +21,18 @@ const app = express();
 const main = async () => {
   app.use(cors());
   app.use(bodyParser.json());
+  app.use(
+    pino({
+      customLogLevel: (res, err) => {
+        if (res.statusCode >= 400 && res.statusCode < 500) {
+          return 'warn';
+        } else if (res.statusCode >= 500 || err) {
+          return 'error';
+        }
+        return 'info';
+      },
+    })
+  );
   app.use(express.urlencoded({ extended: true }));
   app.use(moragan('combined'));
   app.use(compression({ level: 1 }));
@@ -39,6 +52,7 @@ const main = async () => {
       );
   });
   app.use((err, req, res, next) => {
+    req.log.error('Error occured ', JSON.stringify(err, {}, 4));
     return res
       .status(err.statusCode || status.INTERNAL_SERVER_ERROR)
       .json(
