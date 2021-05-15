@@ -21,7 +21,7 @@ To learn and understand basic auth system with express and typescript
 
 - [x] Proper error handling
 - [x] Standard response
-- [ ] Models using Sequlize
-- [ ] Basic Authentication using JWT
+- [x] Models using Sequlize
+- [x] Basic Authentication using JWT
 - [ ] Proper Logging
-- [ ] Component based architecture
+- [x] Component based architecture
