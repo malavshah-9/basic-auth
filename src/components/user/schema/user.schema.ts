@@ -1,5 +1,5 @@
 import { DataTypes, Sequelize, Model } from 'sequelize';
-import DBClient from '../../sequelize/index';
+import DBClient from '../../../util/dbConfig';
 
 class User extends Model {}
 User.init(

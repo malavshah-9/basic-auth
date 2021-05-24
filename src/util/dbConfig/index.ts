@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import ENV from '../config/environment';
+import ENV from '../../config/environment';
 
 class DBclient {
   dbClient: Sequelize;
