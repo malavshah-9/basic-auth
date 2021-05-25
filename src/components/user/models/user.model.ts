@@ -1,9 +1,9 @@
 import status, { StatusCodes } from 'http-status-codes';
 
-import user from './user.model';
-import JWT from '../../services/JWTGenerator.service';
-import HashMan from '../../services/HashMan.service';
-import ResponseFormatter from '../../util/ResponseFormatter';
+import user from '../schema/user.schema';
+import JWT from '../../../util/jwtGenerator/JWTGenerator.service';
+import HashMan from '../../../util/hashman/HashMan.service';
+import ResponseFormatter from '../../../util/ResponseFormatter';
 
 class UserController {
   constructor() {}

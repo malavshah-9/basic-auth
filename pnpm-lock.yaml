@@ -28,6 +28,7 @@ specifiers:
   http-terminator: ^3.0.0
   jsonwebtoken: ^8.5.1
   method-override: ^3.0.0
+  module-alias: ^2.2.2
   mysql2: ^2.2.5
   nodemon: ^2.0.7
   pbkdf2: ^3.1.2
@@ -56,6 +57,7 @@ dependencies:
   http-terminator: 3.0.0
   jsonwebtoken: 8.5.1
   method-override: 3.0.0
+  module-alias: 2.2.2
   mysql2: 2.2.5
   pbkdf2: 3.1.2
   pino-http: 5.5.0
@@ -2057,6 +2059,10 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+    dev: false
+
+  /module-alias/2.2.2:
+    resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: false
 
   /moment-timezone/0.5.33:
