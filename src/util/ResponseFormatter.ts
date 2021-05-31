@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import status, { getReasonPhrase } from 'http-status-codes';
 import { CustomError, CustomResponse } from '../types/CustomError';
 import config from '../config/environment';
@@ -20,6 +21,18 @@ class ResponseFormatter {
       result,
     };
     return response;
+  }
+  createResponse(
+    res: Response,
+    status: number,
+    message: String,
+    payload: Object | any = {}
+  ) {
+    return res.status(status).json({
+      message,
+      status,
+      payload,
+    });
   }
 }
 

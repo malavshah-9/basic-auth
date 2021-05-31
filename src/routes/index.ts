@@ -2,6 +2,7 @@ import { Application } from 'express';
 import status, { getReasonPhrase } from 'http-status-codes';
 import listEndpoints from 'express-list-endpoints';
 import userRouter from '../components/user/v1/user.routes';
+import CityRouter from '../components/city/v1/city.routes';
 import healthRouter from './health';
 import { PREFIX_ROUTE_V1_API } from '../util/constants';
 import ResponseFormatter from '../util/ResponseFormatter';
@@ -9,7 +10,7 @@ import ResponseFormatter from '../util/ResponseFormatter';
 export default function (app: Application) {
   app.use(PREFIX_ROUTE_V1_API, userRouter);
   app.use(PREFIX_ROUTE_V1_API, healthRouter);
-
+  app.use(PREFIX_ROUTE_V1_API, CityRouter);
   app.use((_, res) => {
     // Route not found handler
     return res

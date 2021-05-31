@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import { Up } from './seed';
 import ENV from '../../config/environment';
 
 class DBclient {
@@ -11,6 +12,9 @@ class DBclient {
       password: ENV.DATABASE_PASSWORD,
       host: ENV.DATABASE_HOST,
       port: parseInt(ENV.DATABASE_PORT + ''),
+    });
+    this.dbClient.sync({
+      force: true,
     });
   }
   getClient() {
