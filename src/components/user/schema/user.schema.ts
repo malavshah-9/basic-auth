@@ -6,10 +6,9 @@ User.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      defaultValue: null,
     },
     email: {
       type: DataTypes.STRING(50),
