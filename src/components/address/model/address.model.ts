@@ -57,6 +57,21 @@ class AddressModel {
       }
     });
   }
+  async delete(addressId: number, userId: number): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let dbResult = await AddressSchema.destroy({
+          where: {
+            id: addressId,
+            userId,
+          },
+        });
+        resolve(dbResult);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }
 
 export default new AddressModel();

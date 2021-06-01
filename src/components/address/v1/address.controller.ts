@@ -57,7 +57,28 @@ class AddressController {
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.OK,
-        'Addresses updated successfully',
+        'Address updated successfully',
+        dbResult
+      );
+    } catch (e) {
+      console.log(e);
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.INTERNAL_SERVER_ERROR,
+        'Internal Server Error'
+      );
+    }
+  }
+  async deleteAddress(req: Request, res: Response, next: NextFunction) {
+    try {
+      let dbResult = await AddressModel.delete(
+        parseInt(req.params.addressId),
+        parseInt(req.body.userId)
+      );
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.OK,
+        'Address deleted successfully',
         dbResult
       );
     } catch (e) {
