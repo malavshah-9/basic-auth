@@ -26,6 +26,70 @@ class AddressController {
       );
     }
   }
+  async getByUserId(req: Request, res: Response, next: NextFunction) {
+    try {
+      let dbResult = await AddressModel.findByUserId(
+        parseInt(req.params.userId)
+      );
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.OK,
+        'Addresses fetched successfully',
+        dbResult
+      );
+    } catch (e) {
+      console.log(e);
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.INTERNAL_SERVER_ERROR,
+        'Internal Server Error'
+      );
+    }
+  }
+  async updateAddress(req: Request, res: Response, next: NextFunction) {
+    try {
+      let dbResult = await AddressModel.update(
+        parseInt(req.params.addressId),
+        req.body.line1,
+        req.body.line2,
+        req.body.userId
+      );
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.OK,
+        'Address updated successfully',
+        dbResult
+      );
+    } catch (e) {
+      console.log(e);
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.INTERNAL_SERVER_ERROR,
+        'Internal Server Error'
+      );
+    }
+  }
+  async deleteAddress(req: Request, res: Response, next: NextFunction) {
+    try {
+      let dbResult = await AddressModel.delete(
+        parseInt(req.params.addressId),
+        parseInt(req.body.userId)
+      );
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.OK,
+        'Address deleted successfully',
+        dbResult
+      );
+    } catch (e) {
+      console.log(e);
+      return ResponseFormatter.createResponse(
+        res,
+        STATUS_CODES.INTERNAL_SERVER_ERROR,
+        'Internal Server Error'
+      );
+    }
+  }
 }
 
 export default new AddressController();

@@ -28,6 +28,7 @@ Address.init(
     modelName: 'Address',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    paranoid: true,
   }
 );
 
