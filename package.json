@@ -16,10 +16,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/ajv": "^1.0.0",
     "@types/argon2": "^0.15.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/pbkdf2": "^3.1.0",
+    "ajv": "^8.5.0",
+    "ajv-formats": "^2.1.0",
     "argon2": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
