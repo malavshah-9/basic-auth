@@ -9,7 +9,8 @@ class AddressController {
       let dbResult = await AddressModel.create(
         req.body.line1,
         req.body.line2,
-        req.body.userId
+        req.body.userId,
+        req.body.cityId
       );
       return ResponseFormatter.createResponse(
         res,
@@ -52,7 +53,8 @@ class AddressController {
         parseInt(req.params.addressId),
         req.body.line1,
         req.body.line2,
-        req.body.userId
+        req.body.userId,
+        req.body.cityId
       );
       return ResponseFormatter.createResponse(
         res,

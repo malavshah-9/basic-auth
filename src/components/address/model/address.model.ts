@@ -1,13 +1,19 @@
 import { AddressSchema } from '../schema';
 import userSchema from '../../user/schema/user.schema';
 class AddressModel {
-  async create(line1: String, line2: String, userId: number): Promise<any> {
+  async create(
+    line1: String,
+    line2: String,
+    userId: number,
+    cityId: number
+  ): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         let dbResult = await AddressSchema.create({
           line1,
           line2,
           userId,
+          cityId,
         });
         resolve(dbResult.toJSON());
       } catch (e) {
@@ -35,7 +41,8 @@ class AddressModel {
     addressId: number,
     line1: string,
     line2: string,
-    userId: number
+    userId: number,
+    cityId: number
   ): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
@@ -44,6 +51,7 @@ class AddressModel {
             line1,
             line2,
             userId,
+            cityId,
           },
           {
             where: {
