@@ -4,6 +4,7 @@ import user from '../schema/user.schema';
 import JWT from '../../../util/jwtGenerator/JWTGenerator.service';
 import HashMan from '../../../util/hashman/HashMan.service';
 import ResponseFormatter from '../../../util/ResponseFormatter';
+import logger from '../../../util/logger/logger';
 
 class UserController {
   constructor() {}
@@ -35,7 +36,14 @@ class UserController {
             );
         }
       } catch (e) {
+        logger.error(
+          __dirname,
+          'Error ocurred in addNewUser of UserController',
+          'POST',
+          e
+        );
         let errors;
+
         if (e.errors) {
           errors = e.errors.map((item) => item.message);
         }
@@ -95,6 +103,12 @@ class UserController {
           );
         }
       } catch (e) {
+        logger.error(
+          __dirname,
+          'Error ocurred in signIn of UserController',
+          'POST',
+          e
+        );
         next(e);
       }
     } else {
