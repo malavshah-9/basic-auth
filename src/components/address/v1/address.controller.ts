@@ -2,6 +2,7 @@ import ResponseFormatter from '../../../util/ResponseFormatter';
 import { NextFunction, Request, Response } from 'express';
 import STATUS_CODES from 'http-status-codes';
 import AddressModel from '../model/address.model';
+import logger from '../../../util/logger/logger';
 
 class AddressController {
   async create(req: Request, res: Response, next: NextFunction) {
@@ -19,7 +20,12 @@ class AddressController {
         dbResult
       );
     } catch (e) {
-      console.log(e);
+      logger.error(
+        __dirname,
+        'Error ocurred in create of addressController',
+        'POST',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -39,7 +45,12 @@ class AddressController {
         dbResult
       );
     } catch (e) {
-      console.log(e);
+      logger.error(
+        __dirname,
+        'Error ocurred in getByUserId of addressController',
+        'GET',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -63,7 +74,12 @@ class AddressController {
         dbResult
       );
     } catch (e) {
-      console.log(e);
+      logger.error(
+        __dirname,
+        'Error ocurred in updateAddress of addressController',
+        'PUT',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -84,7 +100,12 @@ class AddressController {
         dbResult
       );
     } catch (e) {
-      console.log(e);
+      logger.error(
+        __dirname,
+        'Error ocurred in deleteAddress of addressController',
+        'DELETE',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,

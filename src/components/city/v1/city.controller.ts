@@ -2,6 +2,7 @@ import { Response, Request, NextFunction } from 'express';
 import ResponseFormatter from '../../../util/ResponseFormatter';
 import STATUS_CODES from 'http-status-codes';
 import CityModel from '../model/city.model';
+import logger from '../../../util/logger/logger';
 
 class CityController {
   async createCity(req: Request, res: Response) {
@@ -15,7 +16,12 @@ class CityController {
         modelResult
       );
     } catch (e) {
-      console.log(' error while creating city ', e);
+      logger.error(
+        __dirname,
+        'Error ocurred in createCity of CityController',
+        'POST',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -55,7 +61,12 @@ class CityController {
       );
       return ResponseFormatter.createResponse(res, 200, '', cities);
     } catch (e) {
-      console.log(' error while geting cities ', e);
+      logger.error(
+        __dirname,
+        'Error ocurred in getCities of CityController',
+        'GET',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -79,7 +90,12 @@ class CityController {
         cityCreatResult
       );
     } catch (e) {
-      console.log(' Error while creating bulk create cities ', e);
+      logger.error(
+        __dirname,
+        'Error ocurred in bulkCreate of CityController',
+        'POST',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
@@ -107,6 +123,12 @@ class CityController {
         'Invalid CityId!'
       );
     } catch (e) {
+      logger.error(
+        __dirname,
+        'Error ocurred in delete of CityController',
+        'DELETE',
+        e
+      );
       return ResponseFormatter.createResponse(
         res,
         STATUS_CODES.INTERNAL_SERVER_ERROR,
