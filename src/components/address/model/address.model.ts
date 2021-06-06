@@ -30,6 +30,9 @@ class AddressModel {
             required: true,
             attributes: [],
           },
+          where: {
+            userId,
+          },
         });
         resolve(dbResult);
       } catch (e) {
